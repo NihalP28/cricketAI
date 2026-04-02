@@ -1,2 +1,3 @@
 import streamlit as st
-from predictor import predict_scores
+from predictor import predict_score
+
