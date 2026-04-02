@@ -23,9 +23,7 @@ def get_expected_run_rate(wickets, overs_played, current_rr):
     else:
         aggression = 0.7
 
-    # -------------------------------
     # ⏱️ Match Phase (IPL T20)
-    # -------------------------------
     if overs_played <= 6:
         phase = "powerplay"
         phase_boost = 1.25
@@ -36,9 +34,7 @@ def get_expected_run_rate(wickets, overs_played, current_rr):
         phase = "death"
         phase_boost = 1.5
 
-    # -------------------------------
     # 💥 Special Situations
-    # -------------------------------
     
     # Death over explosion (if wickets in hand)
     if phase == "death" and wickets_left >= 6:
@@ -52,9 +48,7 @@ def get_expected_run_rate(wickets, overs_played, current_rr):
     else:
         collapse_penalty = 1.0
 
-    # -------------------------------
     # 🔢 Final Expected Run Rate
-    # -------------------------------
     expected_rr = (
         current_rr
         * stability
@@ -78,9 +72,7 @@ def predict_score(current_score, overs_played, wickets, current_rr):
 
     predicted = current_score + (expected_rr * overs_left)
 
-    # -------------------------------
     # 🎲 Smart Randomness (context-aware)
-    # -------------------------------
     if wickets >= 7:
         noise = random.uniform(0.85, 1.0)   # collapse risk
     elif overs_played >= 16:
